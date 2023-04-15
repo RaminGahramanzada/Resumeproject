@@ -19,25 +19,39 @@
   <script src="assets/js/users.js"></script>
   <link rel="stylesheet" href="assets/css/users.css">
   <title>JSP Page</title>
+
+
 </head>
 <body>
+
+
+<%--<jsp:include page="header.jsp" />--%>
+
+
 <%
   UserDaoInter userDao = Context.instanceUserDao();
-  String name  = request.getParameter("name");
+  String name = request.getParameter("name");
   String surname = request.getParameter("surname");
   String nationalityIdStr = request.getParameter("nid");
   Integer nationalityId=null;
-  if(nationalityIdStr!=null){
-    nationalityId=Integer.parseInt(nationalityIdStr);
+  if(nationalityIdStr!=null && !nationalityIdStr.trim().isEmpty()) {
+    nationalityId = Integer.parseInt(nationalityIdStr);
   }
-
-  List<User> list = userDao.getAll(name,surname,nationalityId);
-
+  List<User> list = userDao.getAll(name, surname, nationalityId);
 %>
 <div class="container">
+  <%--<div class="row">--%>
+  <%--<div class="col-sm-8">col-sm-8</div>--%>
+  <%--<div class="col-sm-4">col-sm-4</div>--%>
+  <%--</div>--%>
+  <%--<div class="row">--%>
+  <%--<div class="col-sm">col-sm</div>--%>
+  <%--<div class="col-sm">col-sm</div>--%>
+  <%--<div class="col-sm">col-sm</div>--%>
+  <%--</div>--%>
   <div class="row">
     <div class="col-4">
-      <form action="users" method="GET">
+      <form action="users.jsp" method="GET">
         <div class="form-group">
           <label for="name">name:</label>
           <input onkeyup="writeWhatIamTyping()"
@@ -65,38 +79,62 @@
       </thead>
       <tbody>
       <%
-        for (User u:list){
+        for(User u: list){
       %>
       <tr>
         <td><%=u.getName()%></td>
         <td><%=u.getSurname()%></td>
         <td><%=u.getNationality().getName()==null?"N/A":u.getNationality().getName()%></td>
-        <td style="width: 5px">
-          <form action="userdetail" method="POST">
-            <input type="hidden" name="id" value="<%=u.getId()%>"/>
-            <input type="hidden" name="action" value="delete"/>
-           <button  class=" btn btn-danger" type="submit" value="delete" >
-             <i class="fas fa-trash-alt"></i>
-           </button>
-          </form>
+        <td style="width:5px">
 
-
-        </td>
-        <td style="width: 5px">
-        <form action="userdetail" method="GET">
           <input type="hidden" name="id" value="<%=u.getId()%>"/>
-          <input type="hidden" name="action" value="update"/>
-          <button class="btn btn-secondary" type="submit" value="update" >
-            <i class="fas fa-pen-square"/></i>
+          <input type="hidden" name="action" value="delete"/>
+          <button class="btn btn-danger" type="submit" value="delete"
+                  data-toggle="modal" data-target="#exampleModal"
+                  onclick="setIdForDelete(<%=u.getId()%>)">
+            <i class="fas fa-trash-alt"></i>
           </button>
-        </form>
+        </td>
+        <td style="width:5px">
+          <form action="userdetail" method="GET">
+            <input type="hidden" name="id" value="<%=u.getId()%>"/>
+            <input type="hidden" name="action" value="update"/>
+            <button class="btn btn-secondary" type="submit" value="update">
+              <i class="fas fa-pen-square"></i>
+            </button>
+          </form>
         </td>
       </tr>
-      <% } %>
-
-
+      <%}%>
       </tbody>
     </table>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure?
+      </div>
+      <div class="modal-footer">
+        <form action="userdetail" method="POST">
+          <input type="hidden" name="id" value="" id="idForDelete"/>
+          <input type="hidden" name="action" value="delete"/>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <input type="submit" class="btn btn-danger" value="Delete"/>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 </body>
