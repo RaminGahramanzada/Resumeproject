@@ -26,8 +26,10 @@
 
 
 <%--<jsp:include page="header.jsp" />--%>
-
-
+<%
+  User user =(User) session.getAttribute("loggedInUser");
+%>
+<%="welcome, "+user.getName()%>
 <%
   UserDaoInter userDao = Context.instanceUserDao();
   String name = request.getParameter("name");

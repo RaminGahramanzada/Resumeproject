@@ -232,12 +232,12 @@ public class UserDaoImpl extends AbstractDao implements UserDaoInter {
         }
     }
 
-  // public static void main(String[] args) {
-//        User u = new User(0, "test","test","test","test",null,null,null,null);
+//   public static void main(String[] args) {
+//     User u = new User(0, "test","test","test","test",null,null,null,null);
 //        u.setPassword("12345");
-//        new UserDaoImpl().addUser(u);
-
-        //System.out.println(crypt.hashToString(4, "12345".toCharArray()));
- //   }
+//       new UserDaoImpl().addUser(u);
+//
+//        System.out.println(crypt.hashToString(4, "12345".toCharArray()));
+//    }
 
 }

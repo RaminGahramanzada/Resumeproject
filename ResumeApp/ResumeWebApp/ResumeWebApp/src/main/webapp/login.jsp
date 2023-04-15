@@ -19,52 +19,32 @@
     <link rel="stylesheet" href="assets/css/login.css">
 
     <title>Login Page</title>
-</head>
-<body>
-<%
+    <head>
+        <title>Admin Login</title>
+        <link rel="stylesheet" href="assets/css/AdminLogin.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+<body class="login_background">
 
-%>
-<form class="form-signin" action="#" method="post">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
+<form action="login" method="POST">
+    <div class="col-4 container login_fix_">
+        <center>
+            <h1>Login:</h1>
+        </center>
+        <div class="form-group">
+            <label>Email address</label>
+            <input type="email" class="form-control" placeholder="email@example.com" name="email">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" placeholder="Password" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary" name="login">Login</button>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <button class="btn btn-lg btn-secondary btn-block" id="show-signup">Sign up</button>
 </form>
 
-<form class="form-signup" action="#" method="post">
-    <h2 class="h4 mb-4 font-weight-normal">Don't have an account? Sign up</h2>
-    <label for="inputName" class="sr-only">Name</label>
-    <input type="text" id="inputName" class="form-control mb-2" placeholder="Name" required>
-    <label for="inputSignupEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputSignupEmail" class="form-control mb-2" placeholder="Email address" required>
-    <label for="inputSignupPassword" class="sr-only">Password</label>
-    <input type="password" id="inputSignupPassword" class="form-control mb-2" placeholder="Password" required>
-    <label for="inputSignupPassword2" class="sr-only">Confirm Password</label>
-    <input type="password" id="inputSignupPassword2" class="form-control mb-2" placeholder="Confirm Password" required>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-</form>
-
-<script>
-    $(document).ready(function() {
-        $('.form-signup').hide(); // hide the sign up form initially
-
-        $('#show-signup').click(function() {
-            $('.form-signup').show(); // show the sign up form when button is clicked
-        });
-    });
-</script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
-</body>
+
 </html>
